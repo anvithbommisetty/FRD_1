@@ -15,7 +15,7 @@ def analyse_text(transcript):
     s = "API_KEY"
     for i in range(totalChunks):
         print(i)
-        p = s+str(k)
+        p = s+str(currentApiKey)
         API_KEY = os.getenv(p)
         response = extract_features(chunks[i],API_KEY)
         data += response.text
