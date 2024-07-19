@@ -38,7 +38,7 @@ def new_transcript(transcript):
     
     sentences = re.split(r'(?<=[.!?]) +', cleaned_transcript)
     
-    # Filter out one-word sentences
+    # Filter out three-word sentences
     filtered_sentences = [sentence for sentence in sentences if len(sentence.split()) > 3]
     
     # Join the remaining sentences back into a single string

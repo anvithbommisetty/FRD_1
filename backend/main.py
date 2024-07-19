@@ -8,22 +8,23 @@ from api import extract_features, generate_frd
 def analyse_text(transcript):
     chunks = new_transcript(transcript)
     data = ""
-    z = len(chunks)
-    j = 0
-    k = 0
+    totalChunks = len(chunks)
+    currentRequests = 0
+    currentApiKey = 0
+    totalApiKeys = 3
     s = "API_KEY"
-    for i in range(z):
+    for i in range(totalChunks):
         print(i)
         p = s+str(k)
         API_KEY = os.getenv(p)
         response = extract_features(chunks[i],API_KEY)
         data += response.text
-        j += 1
-        if j==15 :
-            j = 0
-            k = (k+1)%3
+        currentRequests+= 1
+        if currentRequests==15 :
+            currentRequests = 0
+            currentApiKey = (currentApiKey+1)%totalApiKeys
     clean_data =  data.replace("```", "")
-    p = s+str(k)
+    p = s+str(currentApiKey)
     frd = generate_frd(clean_data,os.getenv(p))
     return frd.text
 

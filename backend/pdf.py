@@ -1,7 +1,7 @@
 import markdown2, io
 from xhtml2pdf import pisa
 
-# Function to convert Markdown to HTML while preserving newlines
+#Function to convert Markdown to HTML while preserving newlines
 def convert_markdown_to_html_with_line_breaks(markdown_content):
     html_content = markdown2.markdown(markdown_content)
     return html_content
